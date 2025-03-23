@@ -26,12 +26,17 @@ git status
 git add .
 ```
 
+![alt text](docs/afteradd.png)
+
+Im Bild siehst du keine rot markierten Files mehr. Das bedeutet es wurdne alle hinzugefügt.
 ### Schritt 3
 
 ```
 git commit -m "WIP"
 ```
 Statt WIP kannst du hier reinschreiben was du gemacht hast. (Aufgabe fertig, oder Charakter klassen erstellt)
+
+![alt text](image.png)
 
 ### Schritt 3
 
