@@ -1,3 +1,7 @@
+# Nachhilfe HTL Perg
+Im Ordner Angaben findest du die Angaben der jeweiligen Aufgabe.
+Dort befindet sich auch ein Ordner in dem du deine Aufgaben hineinspeichern kannst (`Solutions`).
+
 # Git Basics
 Hier findest du eine kleine Beschreibung dazu, wie du mit git arbeiten kannst.
 
@@ -36,7 +40,7 @@ git commit -m "WIP"
 ```
 Statt WIP kannst du hier reinschreiben was du gemacht hast. (Aufgabe fertig, oder Charakter klassen erstellt)
 
-![alt text](image.png)
+![alt text](docs/image.png)
 
 ### Schritt 3
 
