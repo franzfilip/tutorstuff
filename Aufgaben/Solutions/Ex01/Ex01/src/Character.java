@@ -1,4 +1,4 @@
-public class Character {
+public abstract class Character {
     protected int characterId;
     protected String name;
     protected int health;
@@ -52,41 +52,58 @@ public class Character {
         }
     }
 
-    public int dealDamage(Character character, Attack attack) {
-        int damageDeal = 0; // damage that is done to the enemy
-
-        //calc Dmg
-        damageDeal += attack.baseDamage;
-        if (this instanceof Mage) {
-            damageDeal += Mage.spellPower;
-        }
-
-        character.receiveDamage(damageDeal);
-        return damageDeal;
+    public int getCharacterId() {
+        return this.characterId;
     }
 
-    public void receiveDamage(int damage) {
-        int armor = 0;
-        //calc opponent health
-        if (this instanceof Warrior) {
-            armor += ((Warrior) this).getArmor();
-            if (((Warrior) this).getArmor() > damage) {
-                System.out.println("The damage got blocked");
-                armor -= damage;
-                damage = 0;
-            }
-        }
-
-        //Archer
-        if (this instanceof Archer) {
-            if (((Archer) this).dogdeChance() == 1) { // 25% that 1 is the random number
-                System.out.println("The Archer dodged the attack EPIC GAMER MOMENT MLG");
-                damage = 0; //because he dodged the attack
-            }
-        }
-
-        this.health += armor;
-        this.health -= damage;
-        System.out.println("The Enemy has " + this.health + " hp");
+    public String getName() {
+        return this.name;
     }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public Attack[] getAttacks() {
+        return this.attacks;
+    }
+
+    public abstract int dealDamage(Character character, Attack attack);
+
+
+    public abstract void receiveDamage(int damage);
+
+    public String toString() {
+        return "Name: " + this.name + " Leben: " + this.health;
+    }
+
+    public int compareTo(Character other) {
+        if (this instanceof Warrior && other instanceof Archer) {
+            return 1;
+        }
+        if (this instanceof Archer && other instanceof Warrior) {
+            return 1;
+        }
+        if (this instanceof Mage && other instanceof Archer) {
+            return -1;
+        }
+        if (this instanceof Archer && other instanceof Mage) {
+            return -1;
+        }
+        if (this instanceof Warrior && other instanceof Warrior) {
+            return other.name.compareTo(this.name);
+        }
+        if (this instanceof Archer && other instanceof Archer) {
+            return other.name.compareTo(this.name);
+        }
+        if (this instanceof Mage && other instanceof Mage) {
+            return other.name.compareTo(this.name);
+        }
+        return 0;
+    }
+
+    public boolean searchTerm (String term) {
+        return false;
+    }
+
 }

@@ -69,4 +69,5 @@ public class Attack {
     public int getManaUsage() {
         return this.manaUsage;
     }
+
 }
