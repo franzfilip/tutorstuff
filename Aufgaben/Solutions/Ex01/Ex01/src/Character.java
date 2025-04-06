@@ -78,28 +78,7 @@ public abstract class Character {
     }
 
     public int compareTo(Character other) {
-        if (this instanceof Warrior && other instanceof Archer) {
-            return 1;
-        }
-        if (this instanceof Archer && other instanceof Warrior) {
-            return 1;
-        }
-        if (this instanceof Mage && other instanceof Archer) {
-            return -1;
-        }
-        if (this instanceof Archer && other instanceof Mage) {
-            return -1;
-        }
-        if (this instanceof Warrior && other instanceof Warrior) {
             return other.name.compareTo(this.name);
-        }
-        if (this instanceof Archer && other instanceof Archer) {
-            return other.name.compareTo(this.name);
-        }
-        if (this instanceof Mage && other instanceof Mage) {
-            return other.name.compareTo(this.name);
-        }
-        return 0;
     }
 
     public boolean searchTerm (String term) {

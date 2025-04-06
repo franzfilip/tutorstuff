@@ -12,6 +12,7 @@ public class Archer extends Character {
         int index = 0;
         if (attack == null) {
             index += (int) (Math.random() * (2 - 0 +1) + 0 );
+            System.out.println("Attack: " + attacks[index].toString());
             character.receiveDamage(attacks[index].baseDamage);
             return attacks[index].baseDamage;
         }else {

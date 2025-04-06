@@ -30,13 +30,21 @@ public class Main {
         characters[17] = new Archer("Tom", 80, archerAtt);
         characters[7] = new Mage("Subaru", 100, mageAtt, 300); //OP
 
+        //3 Arrays
+
+
         //Ausgabe unsotiert
         System.out.println("Unsotiert");
         printArr(characters);
 
+
         System.out.println("Sortiert");
         moveNull(characters);
-        sortArr(characters);
+        Character[] sorted = sortArr(characters);
+        printArr(sorted);
+        characters = sorted;
+        System.out.println("----------------------------");
+
         printArr(characters);
 
         //search
@@ -53,14 +61,48 @@ public class Main {
             }
         }
     }
-    public static void sortArr (Character[] characters) {
+    public static Character[] sortArr (Character[] characters) {
+        Character[] war = new Character[20];
+        Character[] arc = new Character[20];
+        Character[] mag = new Character[20];
+        sortIntoThree(characters, war, arc, mag);
+
+        sortByProperty(war);
+        sortByProperty(arc);
+        sortByProperty(mag);
+
+        Character[] result = new Character[20];
+        fillArr(result, war);
+        fillArr(result, arc);
+        fillArr(result, mag);
+
+        return result;
+
+    }
+
+    public static void fillArr (Character[] characters, Character[] copy) {
+        for (int i = 0; i < copy.length; i++) {
+            characters[getNextIndex(characters)] = copy[i];
+        }
+    }
+
+    public static int getNextIndex (Character[] characters) {
         for (int i = 0; i < characters.length; i++) {
-            for (int j = 0; j < characters.length - 1; j++) {
-                if (characters[j] != null && characters[j+1] != null) {
-                    if (characters[j].compareTo(characters[j+1]) < 1) {
-                            Character temp = characters[j];
-                            characters[j] = characters[j + 1];
-                            characters[j + 1] = temp;
+            if (characters[i] == null) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public static void sortByProperty (Character[] characters) {
+        for (int i = 0; i < characters.length; i++) {
+            for (int j = 0; j < characters.length-1; j++) {
+                if (characters[j] != null && characters[j + 1] != null) {
+                    if (characters[j].compareTo(characters[j + 1]) > 1) {
+                        Character temp = characters[j];
+                        characters[j] = characters[j+1];
+                        characters[j+1] = temp;
                     }
                 }
             }
@@ -92,16 +134,40 @@ public class Main {
     }
 
     public static void fight (Character[] arr) {
-        int fighter1 = (int) (Math.random() * (5 - 0 +1) + 0 );
-        int fighter2 = (int) (Math.random() * (5 - 0 +1) + 0 );
+        int fighter1 = 0;
+        int fighter2 = 0;
 
-        if (fighter1 == fighter2) {
+        while (fighter1 == fighter2) {
             fighter1 = (int) (Math.random() * (5 - 0 +1) + 0 );
             fighter2 = (int) (Math.random() * (5 - 0 +1) + 0 );
         }
-        while (arr[fighter1].getHealth() >= 0 || arr[fighter1].getHealth() >= 0) {
+        System.out.println(arr[fighter1].toString() + " vs " + arr[fighter2].toString());
+        while (arr[fighter1].getHealth() >= 0 && arr[fighter2].getHealth() >= 0) {
             arr[fighter1].dealDamage(arr[fighter2], null);
             arr[fighter2].dealDamage(arr[fighter1], null);
+        }
+        if (arr[fighter1].getHealth() > 0) {
+            System.out.println(arr[fighter1].name + " hat gewonnen");
+        }else {
+            System.out.println(arr[fighter2].name + " hat gewonnen");
+        }
+    }
+    public static void sortIntoThree (Character[] arr, Character[] war, Character[] arc, Character[] mag) {
+        int indexWar = 0;
+        int indexArc = 0;
+        int indexMag = 0;
+
+        for (int i = 0;  i < arr.length; i++) {
+            if (arr[i] instanceof Warrior) {
+                war[indexWar] = arr[i];
+                indexWar++;
+            } else if (arr[i] instanceof Archer) {
+                arc[indexArc] = arr[i];
+                indexArc++;
+            } else if (arr[i] instanceof  Mage) {
+                mag[indexMag] = arr[i];
+                indexMag++;
+            }
         }
     }
 }

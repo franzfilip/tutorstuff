@@ -28,6 +28,7 @@ public class Warrior extends Character {
         int index = 0;
         if (attack == null) {
             index += (int) (Math.random() * (2 - 0 +1) + 0 );
+            System.out.println("Attack: " + attacks[index].toString());
             character.receiveDamage(attacks[index].baseDamage + strengthBonus);
             return attacks[index].baseDamage + strengthBonus;
         }else {
@@ -63,5 +64,14 @@ public class Warrior extends Character {
             }
         }
         return false;
+    }
+    @Override
+    public int compareTo (Character characters) {
+        if (this.armor > ((Warrior) characters).armor) {
+            return 1;
+        } else if (this.armor < ((Warrior) characters).armor) {
+            return -1;
+        }
+        return 0;
     }
 }

@@ -31,7 +31,7 @@ public class Mage extends Character {
             index += (int) (Math.random() * (2 - 0 + 1) + 0);
 
             this.mana -= attacks[index].manaUsage;
-
+            System.out.println("Attack: " + attacks[index].toString());
             if (this.mana > attacks[index].manaUsage) {
                 character.receiveDamage(attacks[index].baseDamage + spellPower);
             } else {

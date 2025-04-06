@@ -70,4 +70,7 @@ public class Attack {
         return this.manaUsage;
     }
 
+    public String toString () {
+        return "Attacke: " + this.attackName;
+    }
 }
