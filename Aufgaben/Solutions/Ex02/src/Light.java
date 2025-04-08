@@ -9,7 +9,7 @@ public class Light extends SmartDevice{
     }
 
     public void setBrightness(int brightness) {
-        if (brightness < 0 || brightness > 100 || !this.isOn) {
+        if (brightness < 0 || brightness > 100 || this.isOn == false) {
             System.out.println("Die Helligkeit kann nicht kleiner als null sein");
             this.brightness = 0;
         }else {

@@ -9,7 +9,7 @@ public class SecurityCamera extends SmartDevice{
     }
 
     public void setRecording(boolean recording) {
-        if (!recording || !this.isOn) {
+        if (!recording || this.isOn == false) {
             System.out.println("Die Kamera nimmt nicht auf");
         }else {
             System.out.println("Die Kamera nimmt auf");

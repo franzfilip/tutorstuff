@@ -7,7 +7,7 @@ public class Thermostat extends SmartDevice{
     }
 
     public void setCurrentTemperature(double currentTemperature) {
-        if (currentTemperature < 0 || currentTemperature > 30 || !this.isOn) {
+        if (currentTemperature < 0 || currentTemperature > 30 || this.isOn == false) {
             System.out.println("Irgendwas ist falsch");
             this.currentTemperature = 22; // ca normale Raumtemperatur
         }else {

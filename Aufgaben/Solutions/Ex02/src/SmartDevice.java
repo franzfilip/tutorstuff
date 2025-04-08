@@ -23,11 +23,26 @@ public abstract class SmartDevice implements Controllable{
     }
 
     public void setOn(boolean isOn) {
-        if (isOn) {
-            System.out.println("Das Gerät ist eingeschalten");
+        if (!isOn) {
+            System.out.println("Das Gerät ist ausgeschalten");
+            this.isOn = false;
         }else {
-            System.out.println("Das Gerät is ausgeschalten");
+            System.out.println("Das Gerät ist eingeschalten");
+            this.isOn = true;
         }
+    }
+
+    public int getDeviceId() {
+        return this.deviceId;
+    }
+
+    @Override
+    public String getDeviceName() {
+        return this.deviceName;
+    }
+
+    public boolean isOn() {
+        return this.isOn;
     }
 
     // Bearbeitungs Methoden
@@ -43,7 +58,21 @@ public abstract class SmartDevice implements Controllable{
         System.out.println("Gerät ausgeschaltet");
     }
 
+
     public String toString () {
         return "Gerät Id: " + this.deviceId + " Gerät Name: " + this.deviceName + " An/Aus: " + this.isOn;
+    }
+
+    @Override
+    public boolean search (String term) {
+        if (this.deviceName.contains(term)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo (Controllable other) {
+        return other.getDeviceName().compareTo(this.getDeviceName());
     }
 }
